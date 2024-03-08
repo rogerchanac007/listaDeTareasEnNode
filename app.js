@@ -1,13 +1,12 @@
 const {mostrarMenu, pausa} = require("./helpers/mensajes")
+const {inquirerMenu} = require('./helpers/inquirer');
 
 const main = async ()=>{
-    let opt = "";
+    opt = "";
     do{
-        opt = await mostrarMenu();
-        await pausa();
+        opt = await inquirerMenu();
     }
     while(opt !=="0")
-
 }
 
 main();
