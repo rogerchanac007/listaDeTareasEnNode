@@ -1,4 +1,5 @@
 const inquirer = require("inquirer")
+require("colors")
 
 const menuOpt = [
     {
@@ -7,36 +8,44 @@ const menuOpt = [
         message:'¿Que desea hacer?',
         choices:[{
             value:"1",
-            name:"1. Crear una tarea"
+            name:`${"1.".green}Crear una tarea`
         },
         {
             value:"2",
-            name:"2. Listar tareas"
+            name:`${"2. ".green}Listar tareas`
         },
         {
             value:"3",
-            name:"3. Listar tareas completadas"
+            name:`${"3. ".green}Listar tareas completadas`
         },
         {
             value:"4",
-            name:"4. Listar tareas pendientes"
+            name:`${"4. ".green}Listar tareas pendientes`
         },
         {
             value:"5",  
-            name:"5. Completar tareas"
+            name:`${"5.".green}Completar tareas`
         },
         {
             value:"6",
-            name:"6. Borrar tarea"
+            name:`${"6.".green}Borrar tarea`
         },
         {
             value:"0",
-            name:"0. Salir"
+            name:`${"0.".green}Salir`
         },
     ],
 
     }
 ]
+
+const inquirerPausa = async ()=>{
+    await inquirer.prompt({
+        type:"input",
+        name:"enter",
+        message:`Presciona ${"Enter".green} para continuar.`
+    })
+}
 
 const inquirerMenu = async ()=>{
     console.clear()
@@ -49,5 +58,6 @@ const inquirerMenu = async ()=>{
 }
 
 module.exports = {
-    inquirerMenu
+    inquirerMenu,
+    inquirerPausa,
 }
