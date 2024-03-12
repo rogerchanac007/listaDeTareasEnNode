@@ -4,6 +4,14 @@ class Tareas{
         this._listado = {}
     }
 
+    get listado(){
+        return this._listado
+    }
+
+    set listado(lista){
+        this._listado = lista;
+    }
+
     agregar(tarea){
         this._listado[tarea.id] = tarea
     }
