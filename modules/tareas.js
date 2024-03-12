@@ -1,11 +1,20 @@
 class Tareas{
     
     constructor(){
-        this.listado = {}
+        this._listado = {}
     }
 
-    nuevaTarea(tarea){
-        this.listado[tarea.id] = tarea
+    agregar(tarea){
+        this._listado[tarea.id] = tarea
+    }
+
+    listar(){
+        let listaDeTareas = [];
+        Object.keys(this._listado).forEach(key=>{
+            let tarea = this._listado[key];
+            listaDeTareas.push(tarea);
+        });
+        return listaDeTareas;
     }
 }
 

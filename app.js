@@ -12,10 +12,10 @@ const main = async ()=>{
             case "1":
                 let descripcion = await leerInput("Descripcion de la tarea:");
                 let tarea = new Tarea(descripcion);
-                tareas.nuevaTarea(tarea);
+                tareas.agregar(tarea);
                 break;
             case "2":
-                console.log(tareas.listado);
+                console.log(tareas.listar());
                 break;
         }
         await inquirerPausa();
