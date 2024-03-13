@@ -22,7 +22,13 @@ const main = async ()=>{
                 tareas.agregar(tarea);
                 break;
             case "2":
-                console.log(tareas.listado);
+                console.log(tareas.listarCompleto());
+                break;
+            case "3":
+                console.log(tareas.listarPendientesCompletadas(estado="completado"))
+                break;
+            case "4":
+                console.log(tareas.listarPendientesCompletadas(estado="incompleto"))
                 break;
         }
 

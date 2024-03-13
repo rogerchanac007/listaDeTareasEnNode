@@ -1,3 +1,4 @@
+require("colors")
 class Tareas{
     
     constructor(){
@@ -23,6 +24,43 @@ class Tareas{
             listaDeTareas.push(tarea);
         });
         return listaDeTareas;
+    }
+
+    listarCompleto(){
+        let cadena = "";
+        this.listar().forEach((tarea, index)=>{
+            let indice = `${index + 1}`.green;
+            let {_descripcion, completado} = tarea;
+            let estado = completado ? "Completado".green : "Pendiente".red;
+            cadena += `${indice}.-${_descripcion} ${estado}\n`
+        })
+        return cadena
+    }
+
+    listarPendientesCompletadas(estado="completado"){
+        //Funcion que retorna las tareas completadas.
+        let cadena = "";
+        let tareas = null;
+        if (estado == "completado") {
+            tareas = this.listar().filter((tarea)=>{
+                let {completado, _descripcion} = tarea;
+                return completado != null
+            })
+        }
+        else if(estado == "incompleto"){
+            tareas = this.listar().filter((tarea)=>{
+                let {completado, _descripcion} = tarea;
+                return completado == null
+            })
+        }
+        
+        tareas.forEach((tarea, index)=>{
+            let indice = `${index + 1}`.green;
+            let {_descripcion, completado} = tarea;
+            let estado = completado ? "Completado".green : "Pendiente".red;
+            cadena += `${indice}.-${_descripcion} ${estado}\n`
+        })
+        return cadena;
     }
 }
 
