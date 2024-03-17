@@ -1,4 +1,4 @@
-const {inquirerMenu, inquirerPausa, leerInput} = require('./helpers/inquirer');
+const {inquirerMenu, inquirerPausa, leerInput, listarTareasABorrar, confirmar} = require('./helpers/inquirer');
 const {guardarEnDB, leerEnDB, convertData} = require('./helpers/persistencia');
 const Tarea = require('./modules/tarea');
 const Tareas = require('./modules/tareas');
@@ -29,6 +29,14 @@ const main = async ()=>{
                 break;
             case "4":
                 console.log(tareas.listarPendientesCompletadas(estado="incompleto"))
+                break;
+            case "6":
+                let id = await listarTareasABorrar(tareas.listar())
+                let confirmacion = await confirmar("¿Estas seguro.?")
+                if(confirmacion){
+                    tareas.borrarTarea(id);
+                    console.log("Tarea borrada.")
+                }
                 break;
         }
 
