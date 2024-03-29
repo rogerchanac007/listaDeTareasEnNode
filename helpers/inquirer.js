@@ -8,7 +8,7 @@ const menuOpt = [
         message: '¿Que desea hacer?',
         choices: [{
             value: "1",
-            name: `${"1.".green}Crear una tarea`
+            name: `${"1. ".green}Crear una tarea`
         },
         {
             value: "2",
@@ -24,15 +24,15 @@ const menuOpt = [
         },
         {
             value: "5",
-            name: `${"5.".green}Completar tareas`
+            name: `${"5. ".green}Completar tareas`
         },
         {
             value: "6",
-            name: `${"6.".green}Borrar tarea`
+            name: `${"6. ".green}Borrar tarea`
         },
         {
             value: "0",
-            name: `${"0.".green}Salir`
+            name: `${"0. ".green}Salir`
         },
         ],
 
@@ -70,6 +70,32 @@ const leerInput = async (message) => {
         }
     }])
     return descripcion;
+}
+
+const confirmCheck = async(tareas)=>{
+
+    const choices = tareas.map((tarea, indice) => {
+        indice += 1;
+        return {
+            value: tarea.id,
+            name: `${indice} ${tarea._descripcion}`,
+            checked:(tarea.completado) ? true : false
+
+        }
+    });
+
+    const preguntas = [
+        {
+            type:"checkbox",
+            name:"ids",
+            message:"Confirmar",
+            choices
+        }
+    ]
+
+    const {ids} = await inquirer.prompt(preguntas)
+    return ids
+
 }
 
 const listarTareasABorrar = async (tareas = []) => {
@@ -114,4 +140,5 @@ module.exports = {
     leerInput,
     listarTareasABorrar,
     confirmar,
+    confirmCheck
 }

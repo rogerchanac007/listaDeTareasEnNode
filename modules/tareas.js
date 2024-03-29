@@ -68,6 +68,16 @@ class Tareas{
             delete this._listado[id];
         }
     }
+
+    toggleCompletadas(ids=[]){
+        ids.forEach(id=>{
+            const tarea = this._listado[id];
+            if(!tarea.completado){
+                tarea.completado = new Date().toISOString()
+            }
+        })
+
+    }
 }
 
 module.exports = Tareas;
